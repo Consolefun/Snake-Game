@@ -16,8 +16,8 @@ import javax.swing.Timer;
 public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
 
     private ImageIcon titleImage;
-    private int[] snakexlength = new int[750];
-    private int[] snakeylength = new int[750];
+    private int[] snakexlength = new int[850];
+    private int[] snakeylength = new int[850];
 
     private boolean left = false;
     private boolean right = false;
@@ -31,7 +31,7 @@ public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
 
     private int lengthofsnake = 3;
     private Timer timer;
-    private int delay = 100;
+    private int delay = 85;
 
     private ImageIcon snakebody;
     private int[] applexpos = {25,50,75,100,125,150,175,200,225,250,275,300,325,350,375,
@@ -39,7 +39,7 @@ public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
             775,800,825,850,875,900,925,950};
     //check the first index [0]->75
     private int[] appleypos = {175,200,225,250,275,300,325,350,375,
-            400,425,450,475,500,525,550,575,600,625,650, 660};
+            400,425,450,475,500,525,550,575,600,625,650, 675};
 
     private ImageIcon appleimage;
 
@@ -64,6 +64,7 @@ public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
 
     public void paint(Graphics g){
 
+        // Length of snake at the beginning of the game
         if(moves == 0){
             snakexlength[2] = 50;
             snakexlength[1] = 75;
@@ -84,18 +85,18 @@ public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
 
         //draw border for SnakeGame
         g.setColor(Color.DARK_GRAY);
-        g.drawRect(24, 174, 961, 655);
+        g.drawRect(24, 174, 961, 676);
 
         // draw background for SnakeGame
         g.setColor(Color.BLUE);
-        g.fillRect(25,175,960,657);
+        g.fillRect(25,175,960,675);
 
         // draw score board
         g.setColor(Color.blue);
         g.setFont(new Font("arial", Font.PLAIN, 14));
         g.drawString("Scores: "+ score, 900, 30);
 
-        //length of snake
+        //Show length of snake
         g.setColor(Color.blue);
         g.setFont(new Font("arial", Font.PLAIN, 14));
         g.drawString("Length: "+ lengthofsnake, 900, 50);
@@ -103,25 +104,57 @@ public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
         righthead = new ImageIcon("C:\\Users\\Kent\\AndroidStudioProjects\\Snake_Game\\lib\\right_head_update.png");
         righthead.paintIcon(this, g ,snakexlength[0] , snakeylength[0]);
 
+        appleimage = new ImageIcon("C:\\Users\\Kent\\AndroidStudioProjects\\Snake_Game\\lib\\apple_new_update.png");
+
         for(int a = 0; a < lengthofsnake; a++){
             if(a==0 && right){
                 righthead = new ImageIcon("C:\\Users\\Kent\\AndroidStudioProjects\\Snake_Game\\lib\\right_head_update.png");
                 righthead.paintIcon(this, g ,snakexlength[a] , snakeylength[a]);
+
+                if((applexpos[xpos] == snakexlength[a] && appleypos[ypos] == snakeylength[a])){
+                    score++;
+                    lengthofsnake++;
+                    xpos = random.nextInt(38);
+                    ypos = random.nextInt(21);
+                }
 
             }
             if(a==0 && left){
                 lefthead = new ImageIcon("C:\\Users\\Kent\\AndroidStudioProjects\\Snake_Game\\lib\\left_head_update.png");
                 lefthead.paintIcon(this, g ,snakexlength[a] , snakeylength[a]);
 
+                if((applexpos[xpos] == snakexlength[a] && appleypos[ypos] == snakeylength[a])){
+                    score++;
+                    lengthofsnake++;
+                    xpos = random.nextInt(38);
+                    ypos = random.nextInt(21);
+                }
+
+
             }
             if(a==0 && up){
                 uphead = new ImageIcon("C:\\Users\\Kent\\AndroidStudioProjects\\Snake_Game\\lib\\up_head_update.png");
                 uphead.paintIcon(this, g ,snakexlength[a] , snakeylength[a]);
 
+                if((applexpos[xpos] == snakexlength[a] && appleypos[ypos] == snakeylength[a])){
+                    score++;
+                    lengthofsnake++;
+                    xpos = random.nextInt(38);
+                    ypos = random.nextInt(21);
+                }
+
+
             }
             if(a==0 && down){
                 downhead = new ImageIcon("C:\\Users\\Kent\\AndroidStudioProjects\\Snake_Game\\lib\\down_head_update.png");
                 downhead.paintIcon(this, g ,snakexlength[a] , snakeylength[a]);
+
+                if((applexpos[xpos] == snakexlength[a] && appleypos[ypos] == snakeylength[a])){
+                    score++;
+                    lengthofsnake++;
+                    xpos = random.nextInt(38);
+                    ypos = random.nextInt(21);
+                }
 
             }
 
@@ -131,15 +164,6 @@ public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
 
             }
 
-        }
-
-        appleimage = new ImageIcon("C:\\Users\\Kent\\AndroidStudioProjects\\Snake_Game\\lib\\apple_update.png");
-
-        if((applexpos[xpos] == snakexlength[0] && appleypos[ypos] == snakeylength[0])){
-            score++;
-            lengthofsnake++;
-            xpos = random.nextInt(38);
-            ypos = random.nextInt(21);
         }
 
         appleimage.paintIcon(this,g ,applexpos[xpos] ,appleypos[ypos]);
@@ -193,7 +217,6 @@ public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
                 if(x == 0){
                     snakexlength[x] = snakexlength[x] - 25;
                 }
-
                 else{
                     snakexlength[x] = snakexlength[x-1];
                 }
@@ -218,7 +241,7 @@ public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
                     snakeylength[y] = snakeylength[y-1];
                 }
                 if(snakeylength[y] < 175){
-                    snakeylength[y] = 780;
+                    snakeylength[y] = 775;
                 }
 
             }
@@ -237,7 +260,7 @@ public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
                 else{
                     snakeylength[y] = snakeylength[y-1];
                 }
-                if(snakeylength[y] > 780){
+                if(snakeylength[y] > 775){
                     snakeylength[y] = 175;
                 }
 

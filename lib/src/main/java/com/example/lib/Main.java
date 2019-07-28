@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] arg){
         JFrame obj = new JFrame();
         SnakeGame snakeGame = new SnakeGame();
-        obj.setBounds(100,100,1018,860);
+        obj.setBounds(10,10,1018,860);
         obj.setBackground(Color.CYAN);
         obj.setResizable(false);
         obj.setVisible(true);
