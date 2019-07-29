@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+// How does a chicken eat a snake
 public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
 
     private ImageIcon titleImage;
