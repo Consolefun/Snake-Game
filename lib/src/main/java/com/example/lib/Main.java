@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
+// set boundaries and background outside the game board
 public class Main {
     public static void main(String[] arg){
         JFrame obj = new JFrame();
