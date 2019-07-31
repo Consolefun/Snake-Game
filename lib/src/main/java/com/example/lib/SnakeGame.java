@@ -53,6 +53,7 @@ public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
 
     private int score = 0;
 
+    // Constructor to set KeyListener and Timer
     public SnakeGame(){
         addKeyListener(this);
         setFocusable(true);
@@ -106,6 +107,7 @@ public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
 
         appleimage = new ImageIcon("C:\\Users\\Kent\\AndroidStudioProjects\\Snake_Game\\lib\\apple_new_update.png");
 
+        // next 4 for loops check if head touch apple
         for(int a = 0; a < lengthofsnake; a++){
             if(a==0 && right){
                 righthead = new ImageIcon("C:\\Users\\Kent\\AndroidStudioProjects\\Snake_Game\\lib\\right_head_update.png");
@@ -168,6 +170,7 @@ public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
 
         appleimage.paintIcon(this,g ,applexpos[xpos] ,appleypos[ypos]);
 
+        // If head touch tail, game over
         for(int i = 1; i < lengthofsnake; i++){
             if(snakexlength[i] == snakexlength[0] && snakeylength[i] == snakeylength[0]){
                 right = false;
@@ -187,6 +190,7 @@ public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
         g.dispose();
     }
 
+    // Snake move when key press
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         timer.start();
@@ -276,6 +280,7 @@ public class SnakeGame extends JPanel   implements KeyListener, ActionListener {
 
     }
 
+    // Check for key press
     @Override
     public void keyPressed(KeyEvent keyEvent) { // snake move when key press
 
